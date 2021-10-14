@@ -1,1 +1,1 @@
-BotsClub: python ForceSubscribeBot.py
+BotsClub: python bot.py
