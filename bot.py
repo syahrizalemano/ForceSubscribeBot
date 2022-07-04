@@ -82,7 +82,7 @@ async def _(event):
             butt = [Button.url("Channel", url=f"https://t.me/{channel}")]
         else:
             msg = welcome_not_joined.format(mention=mention, title=title, fullname=fullname, username=username, name=name, last=last, channel=f"@{channel}")
-            butt = [Button.url("Channel", url=f"https://t.me/{channel}"), Button.inline("UnMute Me", data=f"unmute_{user.id}")]
+            butt = [Button.url("Channel", url=f"https://t.me/{channel}"), Button.inline("🥺UnMute Me🥺", data=f"unmute_{user.id}")]
             await BotsClub.edit_permissions(event.chat.id, user.id, until_date=None, send_messages=False)
         
         await event.reply(msg, buttons=butt)
@@ -105,7 +105,7 @@ async def mute_on_msg(event):
         except Exception as e:
             print(str(e))
             return
-        await event.reply(f"Hey {nm}, seems like you haven't joined our channel. Please join @{channel} and then press the button below to unmute yourself!", buttons=[[Button.url("Channel", url=f"https://t.me/{channel}")], [Button.inline("UnMute Me", data=f"unmute_{event.sender_id}")]])
+        await event.reply(f"Hey Baby {nm}, it's seems like you haven't joined our channel. Please join @{channel} Baby and then press the button below to unmute yourself!", buttons=[[Button.url("Channel", url=f"https://t.me/{channel}")], [Button.inline("🥺UnMute Me🥺", data=f"unmute_{event.sender_id}")]])
 
 
 @BotsClub.on(events.callbackquery.CallbackQuery(data=re.compile(b"unmute_(.*)")))
@@ -115,23 +115,23 @@ async def _(event):
         x = await get_user_join(uid)
         nm = (await BotsClub(GetFullUserRequest(uid))).user.first_name
         if x is False:
-            await event.answer(f"You haven't joined @{channel} yet!", cache_time=0, alert=True)
+            await event.answer(f"You haven't joined @{channel} yet. Baby join na!", cache_time=0, alert=True)
         elif x is True:
             try:
                 await BotsClub.edit_permissions(event.chat.id, uid, until_date=None, send_messages=True)
             except Exception as e:
                 print(str(e))
                 return
-            msg = f"Welcome to {(await event.get_chat()).title}, {nm}!\nGood to see you here!"
+            msg = f"Welcome to {(await event.get_chat()).title}, {nm}!\nGood to see you here Baby!"
             butt = [Button.url("Channel", url=f"https://t.me/{channel}")]
             await event.edit(msg, buttons=butt)
     else:
-        await event.answer("You are an old member and can speak freely! This isn't for you!", cache_time=0, alert=True)
+        await event.answer("You are an old member Baby and you can speak freely! This isn't for you Baby !", cache_time=0, alert=True)
 
 @BotsClub.on(events.NewMessage(pattern="/start"))
 async def strt(event):
-    await event.reply(f"Hi. I'm a force subscribe bot made specially for @{channel}!\n\nCheckout @BotsClubOfficial , @BotsClubDiscussion :)", buttons=[Button.url("Channel", url=f"https://t.me/{channel}"), Button.url("Creator", url="https://t.me/mkspali"), Button.url("Source Code", url="https://github.com/BotsClub/ForceSubscribeBot")])
+    await event.reply(f"Hi. I'm a force subscribe bot made specially for @{channel}!\n\nCheckout @AJEETBOTs , @TPN_CHATROOM :)", buttons=[Button.url("Channel", url=f"https://t.me/{channel}"), Button.url("✨𝗖𝗿𝗲𝗮𝘁𝗲𝗿✨", url="https://t.me/PAPA_BOL_SAKTEHO"), Button.url("💥𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗕𝗮𝗯𝘆💥", url="https://t.me/About_ajeet")])
 
     
-print("ForceSub Bot has started.\nDo visit Channel --> @BotsClubOfficial Support Group --> @BotsClubDiscussion!")
+print("ForceSub Bot has started.\nDo visit Channel --> @AJEETBOTs Support Group --> @TPN_CHATROOM !")
 BotsClub.run_until_disconnected()
